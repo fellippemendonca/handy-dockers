@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    env_file:
+      - postgres.env
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/
+    volumes:
+       - ./volumes/postgres/data/:/var/lib/postgresql/data/
+    restart: unless-stopped
+
+  adminer:
+    container_name: adminer_container
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - 15001:8080
+    depends_on:
+      - postgres
