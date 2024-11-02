@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  code-server:
+    image: codercom/code-server:ubuntu
+    container_name: code-server
+    environment:
+      - DOCKER_USER=username
+      - PASSWORD=
+    volumes:
+      - ./config:/config
+      - ./workspace:/home/coder/workspace
+    ports:
+      - 8080:8080
+    restart: unless-stopped
