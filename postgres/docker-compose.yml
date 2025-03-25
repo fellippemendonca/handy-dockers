@@ -12,11 +12,3 @@ services:
        - ./volumes/postgres/data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  adminer:
-    container_name: adminer_container
-    image: adminer:latest
-    restart: unless-stopped
-    ports:
-      - 15001:8080
-    depends_on:
-      - postgres

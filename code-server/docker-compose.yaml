@@ -1,0 +1,15 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    env_file:
+      - .env
+    volumes:
+      - ./volumes/code-server/config:/config
+    ports:
+      - 8443:8443
+      - 3000:3000
+    restart: unless-stopped
+    extra_hosts:
+      - "localhost:host-gateway"
+
