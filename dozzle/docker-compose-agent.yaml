@@ -8,3 +8,4 @@ services:
       - 7007:7007
     env_file:
       - config-agent.env
+    restart: unless-stopped

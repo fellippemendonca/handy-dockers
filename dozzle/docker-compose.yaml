@@ -7,3 +7,4 @@ services:
       - 7001:8080
     env_file:
       - config.env
+    restart: unless-stopped 
