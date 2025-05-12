@@ -1,11 +1,19 @@
-version: '3.9'
+version: '3'
 
 services:
-  nginx: 
-    container_name: nginx_container
-    image: nginx:alpine
-    volumes:
-      - ./volumes/nginx/templates:/etc/nginx/templates
+  nginx:
+    image: nginx:latest
     ports:
-      - 3000:3000
+      - 80:80
       - 443:443
+    restart: unless-stopped
+    volumes:
+      - ./volumes/nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./volumes/certbot/www:/var/www/certbot/:ro
+      - ./volumes/certbot/conf/:/etc/nginx/ssl/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./volumes/certbot/www/:/var/www/certbot/:rw
+      - ./volumes/certbot/conf/:/etc/letsencrypt/:rw
+

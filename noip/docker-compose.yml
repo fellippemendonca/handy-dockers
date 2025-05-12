@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  noip:
+    image: ghcr.io/noipcom/noip-duc:latest
+    env_file:
+      - noip-duc.env
+    restart: unless-stopped

@@ -1,0 +1,5 @@
+base-url: 'https://ntfy.yourdomain.com'
+behind-proxy: true
+auth-file: '/var/lib/ntfy/user.db'
+auth-default-access: 'deny-all'
+enable-signup: false

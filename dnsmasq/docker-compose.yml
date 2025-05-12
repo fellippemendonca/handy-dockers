@@ -1,0 +1,11 @@
+version: '3'
+services:
+  dnsmasq:
+    image: alpine:latest
+    restart: always
+    ports:
+      - "53:53/udp"
+      - "67:67/udp"
+    volumes:
+      - ./volumes/dnsmasq.conf:/etc/dnsmasq.conf
+    command: apk add --no-cache dnsmasq && /usr/sbin/dnsmasq
