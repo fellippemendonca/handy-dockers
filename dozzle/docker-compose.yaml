@@ -3,6 +3,7 @@ services:
     image: amir20/dozzle:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/data:/data
     ports:
       - 7001:8080
     env_file:
