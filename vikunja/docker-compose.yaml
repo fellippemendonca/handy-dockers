@@ -1,0 +1,38 @@
+services:
+  vikunja:
+    image: vikunja/vikunja
+    environment:
+      VIKUNJA_SERVICE_PUBLICURL: https://fellippe.onthewifi.com/task-manager/
+      VIKUNJA_DATABASE_HOST: db
+      VIKUNJA_DATABASE_PASSWORD: z3iuPaJaQc77TwQve7DoTJR9B
+      VIKUNJA_DATABASE_TYPE: postgres
+      VIKUNJA_DATABASE_USER: vikunja
+      VIKUNJA_DATABASE_DATABASE: vikunja
+      VIKUNJA_SERVICE_JWTSECRET: 5Iv2Y8395jX4AQ77u45HZh1Du
+      VIKUNJA_REDIS_ENABLED: 1
+      VIKUNJA_REDIS_HOST: 'redis:6379'
+      VIKUNJA_CACHE_ENABLED: 1
+      VIKUNJA_CACHE_TYPE: redis
+    ports:
+      - 3456:3456
+    volumes:
+      - ./volumes/files:/app/vikunja/files
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_PASSWORD: z3iuPaJaQc77TwQve7DoTJR9B
+      POSTGRES_USER: vikunja
+    volumes:
+      - ./volumes/db:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -U $$POSTGRES_USER"]
+      interval: 2s
+      start_period: 30s
+  redis:
+    image: redis
+    restart: unless-stopped
