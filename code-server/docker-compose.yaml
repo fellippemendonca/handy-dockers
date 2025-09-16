@@ -7,7 +7,6 @@ services:
     volumes:
       - ./volumes/code-server/config:/config
     ports:
-      - 8443:8443
       - 3000:3000
       - 7733:7733
     restart: unless-stopped
