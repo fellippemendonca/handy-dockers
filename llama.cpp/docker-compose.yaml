@@ -1,0 +1,16 @@
+services:
+  llama_cpp:
+    container_name: llama_cpp
+    image: ghcr.io/ggml-org/llama.cpp:server-vulkan
+    environment:
+      - LLAMA_ARG_MODEL=/models/code.gguf
+      - LLAMA_ARG_FLASH_ATTN=disabled
+      - LLAMA_ARG_CTX_SIZE=6000
+      - LLAMA_ARG_N_GPU_LAYERS=999
+    ports:
+      - "11435:8080"
+    devices:
+      - /dev/dri
+    volumes:
+      - ./volumes/models:/models
+    restart: unless-stopped

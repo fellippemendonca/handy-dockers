@@ -1,12 +1,12 @@
 services:
   piper:
-    image: lscr.io/linuxserver/piper:latest
+    image: lscr.io/linuxserver/piper:1.6.3-ls75
     container_name: piper
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PIPER_VOICE=pt_BR-cadu-medium
+      - PIPER_VOICE=en_US-libritts-high
       - PIPER_LENGTH=1.0 #optional
       - PIPER_NOISE=0.667 #optional
       - PIPER_NOISEW=0.333 #optional
