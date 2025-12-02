@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  admin-notification:
+    container_name: admin-notification
+    image: greenbone/exercise-admin-notification
+    ports:
+      - 9991:8080
+    restart: unless-stopped
