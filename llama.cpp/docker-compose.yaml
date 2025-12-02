@@ -1,0 +1,15 @@
+services:
+  llama_cpp:
+    container_name: llama_cpp
+    image: ghcr.io/ggml-org/llama.cpp:server-vulkan
+    env_file:
+      - .env
+    environment:
+      LLAMA_ARG_MODEL: "/models/qwen2.5-coder-1.5b-instruct-q8_0.gguf"
+    ports:
+      - "11434:8080"
+    devices:
+      - /dev/dri
+    volumes:
+      - ./volumes/models:/models
+    restart: unless-stopped
